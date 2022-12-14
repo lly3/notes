@@ -34,7 +34,7 @@ function NoteList({notes, availableTags, onEditTag, onDeleteTag, onCreateTag}: N
         <Heading m={5}>Notes</Heading>
         <Spacer />
         <Box>
-          <Link to={'create'}>
+          <Link to={'create'} data-testid="create-button">
             <Button colorScheme={'blue'} mr={2}>Create</Button>
           </Link>
           <Button onClick={onOpen} colorScheme={'gray'} variant='outline'>Edit Tags</Button>
@@ -43,21 +43,21 @@ function NoteList({notes, availableTags, onEditTag, onDeleteTag, onCreateTag}: N
             <ModalContent>
               <ModalHeader>Edit Tags</ModalHeader>
               <ModalCloseButton />
-              <ModalBody>
+              <ModalBody data-testid="tags-container">
                 {availableTags.map((tag) => 
                 <HStack key={tag.id} my={3}>
-                  <Input defaultValue={tag.title} onChange={e => onEditTag(e.target.value, tag.id)}/>
+                  <Input defaultValue={tag.title} onChange={e => onEditTag(e.target.value, tag.id)} data-testid={'tag-'+tag.id} />
                   <Button colorScheme={'red'} onClick={() => onDeleteTag(tag.id)}>X</Button>
                 </HStack>
                 )}
                 <HStack my={3}>
-                  <Input ref={newTagTitle} />
+                  <Input ref={newTagTitle} data-testid="new-tag"/>
                   <Button colorScheme={'green'} onClick={() => onCreateTag(newTagTitle.current!.value)}>+</Button>
                 </HStack>
               </ModalBody>
 
               <ModalFooter>
-                <Button colorScheme={'blue'} onClick={onClose}>Close</Button>
+                <Button colorScheme={'blue'} onClick={onClose} data-testid="close-button">Close</Button>
               </ModalFooter>
             </ModalContent>
           </Modal>
@@ -83,7 +83,7 @@ function NoteList({notes, availableTags, onEditTag, onDeleteTag, onCreateTag}: N
           />
         </FormControl>
       </HStack>
-      <SimpleGrid columns={2} spacing={5}>
+      <SimpleGrid columns={2} spacing={5} data-testid="notes-container">
         {filteredNotes.map((note, index) => {
           return <Link to={`/${note.id}`} key={note.id} >
             <NoteCard note={note} />

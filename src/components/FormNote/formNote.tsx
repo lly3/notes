@@ -35,7 +35,7 @@ function FormNote({formTitle, availableTags, onSubmit, title = '', tags = [], de
         <HStack>
           <FormControl isRequired>
             <FormLabel>Title</FormLabel>
-            <Input ref={titleRef} defaultValue={title} />
+            <Input ref={titleRef} defaultValue={title} data-testid="title-input" />
           </FormControl>
           <FormControl>
             <FormLabel>Tags</FormLabel>
@@ -60,12 +60,13 @@ function FormNote({formTitle, availableTags, onSubmit, title = '', tags = [], de
                 )
               }}
               isMulti
+              data-testid="react-select"
             />
           </FormControl>
         </HStack>
         <FormControl my={3} isRequired>
           <FormLabel>Body</FormLabel>
-          <Textarea rows={10} ref={bodyRef} defaultValue={description} />
+          <Textarea rows={10} ref={bodyRef} defaultValue={description} data-testid="textarea"/>
         </FormControl>
         <Flex justify={'end'} gap={3} my={3}>
           <Button variant={'outline'} onClick={() => navigate('..')}>Cancel</Button>
