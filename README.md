@@ -20,7 +20,7 @@ Notes is a simple and easy-to-use note taking application. It allows you to crea
 yarn install
 
 # running server localhost
-# yarn dev
+yarn dev
 ```
 then access to http://localhost:8000
 
